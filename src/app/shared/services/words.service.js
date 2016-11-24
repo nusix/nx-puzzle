@@ -26,6 +26,7 @@ export default class WordsService {
                         temporaryValue = array[currentIndex];
                         array[currentIndex] = array[randomIndex];
                         array[randomIndex] = temporaryValue;
+                        array[randomIndex].setMaskedValue();
                     }
 
                     return array;
@@ -60,7 +61,21 @@ export default class WordsService {
             constructor(data){
                 this.id = data && data.id !== undefined ? data.id : null;
                 this.value = data && data.value ? data.value : null;
-            }
+                this.maskedValue = null;
+            };
+
+            setMaskedValue(){
+                var a = this.value.split(""),
+                    n = a.length;
+
+                for(var i = n - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+                this.maskedValue = a.join("");
+            };
         }
 
         return new Word(data);

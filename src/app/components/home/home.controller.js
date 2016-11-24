@@ -17,17 +17,19 @@ export default class HomeController {
         // this.userName = null;
         this.userName = 'asd';
         this.listOfWords = [];
-        this.init(WordsService);
         this.view = ['name-form','confirm-game','game','results'];
         this.actualView = this.view[2];  //1-insert-name, 2-confirm game and rules 3-game 4-results
+
         this.counter = 0;
         this.timer;
         // this.limit  = 40;
         this.limit = 3;
 
+        this.userWord = null;
+
         var self = this;
 
-        //timing
+        /*-----START TIMING------*/
         var stopCounter = function() {
             $timeout.cancel(self.timer);
             self.timer = null;
@@ -51,8 +53,12 @@ export default class HomeController {
                 console.info('XXX koniecvolalo sa updateCounter cas', self.counter);
             }
         };
+        /*-----END TIMING------*/
 
+        /*-----START INIT APP------*/
+        this.init(WordsService);
         updateCounter();
+        /*-----END INIT------*/
     };
 
     resetGame(){
