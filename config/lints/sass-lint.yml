@@ -1,0 +1,13 @@
+{
+	options: {
+		merge-default-rules: false,
+		formatter: "html",
+		# Output-file works only from CLI:
+		# ./node_modules/sass-lint/bin/sass-lint.js -c ./sass-lint.yml 'src/**/*.scss' -v
+		output-file: "reports/sass-lint.html"
+	},
+	# 1 means warning, 2 means error
+	rules: {
+		# Feel free to add rules
+	}
+}

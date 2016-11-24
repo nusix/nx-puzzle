@@ -1,0 +1,20 @@
+{
+  env: {
+      browser: true,
+      commonjs: true,
+      es6: true,
+      jasmine: true
+  },
+  globals: {
+    angular: true
+  },
+  parserOptions: {
+    sourceType: "module"
+  },
+  plugins: [
+    "angular"
+  ],
+  rules: {
+		# Feel free to add rules
+  }
+}
