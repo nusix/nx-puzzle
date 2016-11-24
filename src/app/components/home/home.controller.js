@@ -22,7 +22,7 @@ export default class HomeController {
         this.actualView = this.view[2];  //1-insert-name, 2-confirm game and rules 3-game 4-results
         this.counter = 0;
         this.timer;
-        // this.limit  = 40000;
+        // this.limit  = 40;
         this.limit = 3;
 
         var self = this;
@@ -59,6 +59,7 @@ export default class HomeController {
         this.userName = null;
         this.counter = 0;
         this.timer = null;
+        this.listOfWords.testingData = [];
         //TODO nacitat novy nahodny zoznam pismen
     };
 
@@ -76,27 +77,12 @@ export default class HomeController {
         // this.updateCounter(this.timeout);
     };
 
-    // stopCounter() {
-    //     this.timeout.cancel(this.timer);
-    //     this.timer = null;
-    // };
-
-    // startCounter(){
-    //     if (this.timer === null) {
-    //         this.updateCounter();
-    //     }
-    // };
-
-    // updateCounter(){
-    //     this.counter++;
-    //     this.timer = this.timeout(this.updateCounter, 1000);
-    // };
-
     init(WordsService){
         var self = this;
 
         WordsService.initListOfWords(function(list){
             self.listOfWords = list;
+            self.listOfWords.getRandomList();
             console.log('HomeController -> init : The list of words were loaded successfuly. listOfWords:', self.listOfWords);
         }, function(){
 

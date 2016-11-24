@@ -8,23 +8,47 @@ export default class WordsService {
         class ListOfWords{
             constructor(){
                 this.data = [];
+                this.testingData = [];
             }
-        }
+
+            getRandomList(){
+                var shuffle = function(array) {
+                    var currentIndex = array.length, temporaryValue, randomIndex;
+
+                    // While there remain elements to shuffle...
+                    while (0 !== currentIndex) {
+
+                        // Pick a remaining element...
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        // And swap it with the current element.
+                        temporaryValue = array[currentIndex];
+                        array[currentIndex] = array[randomIndex];
+                        array[randomIndex] = temporaryValue;
+                    }
+
+                    return array;
+                };
+
+                angular.copy(this.data, this.testingData);
+                this.testingData = shuffle(this.testingData);
+
+                // console.info(this.data, this.testingData);
+            };
+        };
 
         var listOfWords = new ListOfWords(),
             self = this;
 
         this.getWordsFromBackend(function(res){
             if(res && res.data){
-                self.data = res.data.map(function(el){
+                listOfWords.data = res.data.map(function(el){
                     return self.getWordObj(el);
                 });
                 
-                succCbk(self.data);
+                succCbk(listOfWords);
             };
-
-            
-
         }, function(){
             errorCbk();
         });
@@ -34,7 +58,7 @@ export default class WordsService {
 
         class Word{
             constructor(data){
-                this.id = data && data.id ? data.id : null;
+                this.id = data && data.id !== undefined ? data.id : null;
                 this.value = data && data.value ? data.value : null;
             }
         }
