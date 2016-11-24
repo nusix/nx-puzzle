@@ -5,27 +5,33 @@
     3 - error messages zdruzene
     4 - countdown - aby sa nezacalo hned hrat ako potvrdi
     5 - nejako lepsie pouzit timeout
+    6 - blok pre hadanie by mohla byt direktiva
+    7 - mozno vypis aby videl ako odpovedal
 
     xy - pozriet, ako ozaj sa ma kodit callbacky a tak
 
 */
 
 export default class HomeController {
-    constructor(ScoreService, WordsService, $timeout) {
+    constructor(ScoreService, WordsService, $timeout, $filter) {
         'ngInject';
 
-        // this.userName = null;
-        this.userName = 'asd';
+        this.$filter = $filter;
+        this.userName = null;
         this.listOfWords = [];
         this.view = ['name-form','confirm-game','game','results'];
-        this.actualView = this.view[2];  //1-insert-name, 2-confirm game and rules 3-game 4-results
+        this.actualView = this.view[0];  //1-insert-name, 2-confirm game and rules 3-game 4-results
 
         this.counter = 0;
-        this.timer;
+        this.timer = null;
         // this.limit  = 40;
-        this.limit = 3;
+        this.limit = 20;
 
         this.userWord = null;
+        this.wordOrder = 0;
+        this.totalPoints = 0;
+        this.currentPoints = 0;
+        this.lastUserWordSize = 0
 
         var self = this;
 
@@ -37,7 +43,7 @@ export default class HomeController {
             //TODO co sa stane
         };
 
-        var startCounter = function() {
+        this.startCounter = function() {
             if (self.timer === null) {
                 updateCounter();
             }
@@ -47,18 +53,48 @@ export default class HomeController {
             if(self.counter < (self.limit-1)){
                 self.counter++;
                 self.timer = $timeout(updateCounter, 1000);
-                console.info('XXX volalo sa updateCounter cas', self.counter);
+                // console.info('XXX volalo sa updateCounter cas', self.counter);
             }else{
                 stopCounter();
-                console.info('XXX koniecvolalo sa updateCounter cas', self.counter);
+                // console.info('XXX koniecvolalo sa updateCounter cas', self.counter);
             }
         };
         /*-----END TIMING------*/
 
         /*-----START INIT APP------*/
         this.init(WordsService);
-        updateCounter();
         /*-----END INIT------*/
+    };
+
+    //check
+    checkWord(oldValue){
+        // console.info('XX oldValue:', oldValue,'new:', this.userWord);
+
+        var self = this,
+            applyFault = function(){
+                self.currentPoints = self.currentPoints !== 0 ? self.currentPoints - 1 : 0;
+        };
+
+        //checking retyping
+        if(((oldValue.length === this.userWord.length) && (self.$filter('uppercase')(oldValue) !== self.$filter('uppercase')(this.userWord))) ||
+            (oldValue.length > this.userWord.length)){
+            applyFault();
+
+            console.info('YYY znizujeme / nahradil pismeno nejake');
+        };
+
+        if(this.listOfWords.testingData[this.wordOrder].checkInput(this.userWord)){
+            self.nextWord();
+        }
+    };
+
+    nextWord(){
+        this.userWord = null;
+        this.wordOrder++;
+        this.totalPoints += this.currentPoints;
+        this.currentPoints = Math.floor(3.95^(this.listOfWords.testingData[this.wordOrder].length/3));
+        this.lastUserWordSize = 0;
+        console.info('HomeController -> nextWork : Ideme na dalsie slovo');
     };
 
     resetGame(){
@@ -66,6 +102,7 @@ export default class HomeController {
         this.counter = 0;
         this.timer = null;
         this.listOfWords.testingData = [];
+        this.wordOrder = 0;
         //TODO nacitat novy nahodny zoznam pismen
     };
 
@@ -80,7 +117,8 @@ export default class HomeController {
 
     confirmTheGame(){
         this.setView(this.view[2]);
-        // this.updateCounter(this.timeout);
+        this.startCounter();
+
     };
 
     init(WordsService){
@@ -89,6 +127,8 @@ export default class HomeController {
         WordsService.initListOfWords(function(list){
             self.listOfWords = list;
             self.listOfWords.getRandomList();
+            self.currentPoints = Math.floor(3.95^(self.listOfWords.testingData[self.wordOrder].length/3));
+            // self.currentPoints = Math.floor(1.95^(self.listOfWords.testingData[self.wordOrder].length/3))
             console.log('HomeController -> init : The list of words were loaded successfuly. listOfWords:', self.listOfWords);
         }, function(){
 
