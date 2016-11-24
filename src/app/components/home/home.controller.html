@@ -1,8 +1,12 @@
-<!-- Bootstrap core CSS -->
-<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="jumbotron">
+    <h1>Welcome to NX-Puzzle!</h1>
+    <p>Just insert your name and start to play!</p>
 
+    <form name="nameForm">
+        <input type="text" name="userName" placeholder="Enter your nickname" ng-model="vm.userName" required>
+        <button class="btn btn-primary" ng-disabled="!vm.userName || !nameForm.userName.$valid" type="button" ng-click="vm.startTheGame();">Play the game!</button> 
+    </form>
 
-
-<div class="container">
-{{ vm.hello}}
 </div>
+
+{{ vm.listOfWords}}

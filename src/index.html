@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>AngularJS skeleton ES6/TS</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" rel="stylesheet"></script> -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<!--This file should not be modified-->
-<div ng-view>
+<div class="container">
+
+    <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#/home">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">NX-Puzzle</h3>
+      </div>
+
+    <div ng-view role="main">
+
+    </div>
 </div>
 
 </body>
