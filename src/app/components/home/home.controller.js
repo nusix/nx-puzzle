@@ -32,11 +32,15 @@ export default class HomeController {
         this.totalPoints = 0;
         this.currentPoints = 0;
         this.lastUserWordSize = 0
+        this.scores = [];
+
+        //TODO aby mohol zrusit slovo za nulu ?
+        //TODO ulozenie vysledku
 
         var self = this;
 
         /*-----START TIMING------*/
-        var stopCounter = function() {
+        this.stopCounter = function() {
             $timeout.cancel(self.timer);
             self.timer = null;
 
@@ -55,14 +59,16 @@ export default class HomeController {
                 self.timer = $timeout(updateCounter, 1000);
                 // console.info('XXX volalo sa updateCounter cas', self.counter);
             }else{
-                stopCounter();
+                self.stopCounter();
+                self.actualView = self.view[3];
+                ScoreService.addScore(self.scores, self.userName, self.totalPoints);
                 // console.info('XXX koniecvolalo sa updateCounter cas', self.counter);
             }
         };
         /*-----END TIMING------*/
 
         /*-----START INIT APP------*/
-        this.init(WordsService);
+        this.init(ScoreService, WordsService);
         /*-----END INIT------*/
     };
 
@@ -99,6 +105,7 @@ export default class HomeController {
 
     resetGame(){
         this.userName = null;
+        this.userWord = null;
         this.counter = 0;
         this.timer = null;
         this.listOfWords.testingData = [];
@@ -111,6 +118,7 @@ export default class HomeController {
     };
 
     cancelTheGame(){
+        this.stopCounter();
         this.resetGame();
         this.setView(this.view[0]);
     };
@@ -118,10 +126,10 @@ export default class HomeController {
     confirmTheGame(){
         this.setView(this.view[2]);
         this.startCounter();
-
+        this.listOfWords.getRandomList();
     };
 
-    init(WordsService){
+    init(ScoreService, WordsService){
         var self = this;
 
         WordsService.initListOfWords(function(list){
@@ -129,6 +137,14 @@ export default class HomeController {
             self.listOfWords.getRandomList();
             self.currentPoints = Math.floor(3.95^(self.listOfWords.testingData[self.wordOrder].length/3));
             // self.currentPoints = Math.floor(1.95^(self.listOfWords.testingData[self.wordOrder].length/3))
+
+            ScoreService.getScoresFromBackend(function(res){
+                self.scores = res.data;
+                // ScoreService.addScore(self.scores, self.userName, self.totalPoints);
+            }, function(res){
+                //todo error cbk
+            });
+
             console.log('HomeController -> init : The list of words were loaded successfuly. listOfWords:', self.listOfWords);
         }, function(){
 

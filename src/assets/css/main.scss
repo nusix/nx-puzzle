@@ -2,6 +2,12 @@
 
 // Add your scss manually here
 @import '~app/components/home/home.controller';
+@import '~app/components/scores/scores.controller';
+
+body{
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
 
 //bootstrap theme narrow
 /* Space out content a bit */

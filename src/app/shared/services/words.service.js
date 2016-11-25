@@ -98,7 +98,7 @@ export default class WordsService {
                     result = false;
                 };
 
-                console.info('XXX result', result);
+                // console.info('XXX result', result);
                 return result;
             };
         }
@@ -107,7 +107,6 @@ export default class WordsService {
     };
 
     //call http request for getting words from backend
-    // // getDataFromBackend(zip, apiKey, successCbk, errorCbk){
     getWordsFromBackend(successCbk, errorCbk){
         
         var url = 'https://nx-puzzle.firebaseio.com/words.json?auth=' + this.auth;

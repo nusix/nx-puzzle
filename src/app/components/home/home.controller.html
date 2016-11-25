@@ -19,20 +19,20 @@
 <div ng-show="vm.actualView === vm.view[2]" class="jumbotron">
     <h1>Try to guess a word !</h1>
     <h2>Cas : {{ vm.counter }}</h2>
-    <h2>Body dokopy : {{ vm.totalPoints }}</h2>
-    <h2>Body za toto slovo : {{ vm.currentPoints }}</h2>
+    <h2>Total points : {{ vm.totalPoints }}</h2>
+    <h2>Points for actual word : {{ vm.currentPoints }}</h2>
     <p><input style="width: {{vm.listOfWords.testingData[vm.wordOrder].size}}px;" class="word-wrap" type="text" value="{{ vm.listOfWords.testingData[vm.wordOrder].maskedValue }}" disabled></input></p>
     <p><input style="width: {{vm.listOfWords.testingData[vm.wordOrder].size}}px;" class="word-wrap" type="text" ng-model="vm.userWord" ng-change="vm.checkWord('{{vm.userWord}}');"></input></p>
 
-    <!-- <button class="btn btn-primary" type="button" ng-click="vm.confirmTheGame();">Start to play !</button> -->
     <p><button class="btn btn-primary" type="button" ng-click="vm.cancelTheGame();">Back to Welcome page</button></p>
 </div>
 
 <div ng-show="vm.actualView === vm.view[3]" class="jumbotron">
-    <h1>Your results</h1>
-    <p>...</p>
+    <h1>Your results {{vm.userName}}</h1>
+    <p>Total points : {{ vm.totalPoints }}</p>
 
-    <!-- <button class="btn btn-primary" type="button" ng-click="vm.confirmTheGame();">Start to play !</button> -->
+    <!-- TODO show high score table -->
+
     <button class="btn btn-primary" type="button" ng-click="vm.cancelTheGame();">Back to Welcome page</button> 
 </div>
 
