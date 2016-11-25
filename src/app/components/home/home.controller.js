@@ -7,6 +7,7 @@
     5 - nejako lepsie pouzit timeout
     6 - blok pre hadanie by mohla byt direktiva
     7 - mozno vypis aby videl ako odpovedal
+    8 - ked sa to zapne, aby mohol rovno pisat !!!!!!!!!
 
     xy - pozriet, ako ozaj sa ma kodit callbacky a tak
 

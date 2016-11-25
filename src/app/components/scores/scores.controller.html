@@ -1,4 +1,14 @@
 <div class="jumbotron">
-    <h1>Welcome to score table</h1>
-    <p>Scores {{vm.asd}} </p>
+    <h1>Check highscores table!</h1>
 </div>
+
+<table ng-table="vm.tableParams" class="table" show-filter="true">
+    <tr ng-repeat="user in $data">
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+            {{user.name}}</td>
+        <td title="'Total points'" filter="{ score: 'number'}" sortable="'score'">
+            {{user.score}}</td>
+        <td title="'Date and time'" filter="{ timestamp: 'text'}" sortable="'timestamp'">
+            {{vm.convertTime(user.timestamp)}}</td>
+    </tr>
+</table>

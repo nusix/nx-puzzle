@@ -22,7 +22,7 @@
     "angular-sanitize": "1.5.8",
     "lodash": "4.16.4",
     "bootstrap" : "3.3.7",
-    "angular-sortable-view" : "0.0.15"
+    "ng-table" : "2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "6.5.1",
