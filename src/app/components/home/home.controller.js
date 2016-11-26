@@ -2,13 +2,17 @@
     TODO:
     Must DO:
     1 - tlacitka aby boli krajsie 
-    
+    2 - dat to niekde Live !!!!!!!
+
+    3 - check crossbrowser and responsive
+
     5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
     6 - celkova grafika krajsia
     7 - checknite si tabulku - button aby sa preklikli po hre
 
     CSS BUG pismenko posledne ked je tak sa to posunie
-    3 - countdown - aby sa nezacalo hned hrat ako potvrdi
+
+    3 - countdown - aby sa nezacalo hned hrat ako potvrdi 3 sekundy alebo co...
 
     1 - aby mohol zrusit slovo za nulu ?
     2 - progress bars
@@ -30,7 +34,7 @@ export default class HomeController {
         this.userName = null;
         this.listOfWords = null;
         this.view = ['name-form','confirm-game','game','results'];
-        this.actualView = this.view[2];  //1-insert-name, 2-confirm game and rules 3-game 4-results
+        this.actualView = this.view[0];  //1-insert-name, 2-confirm game and rules 3-game 4-results
 
         this.counter = 0;
         this.timer = null;
@@ -85,8 +89,7 @@ export default class HomeController {
         WordsService.initListOfWords(function(list){
             self.listOfWords = list;
             self.listOfWords.getRandomList();
-            self.currentPoints = Math.floor(3.95^(self.listOfWords.testingData[self.wordOrder].length/3));
-            // self.currentPoints = Math.floor(1.95^(self.listOfWords.testingData[self.wordOrder].length/3))
+            self.currentPoints = Math.floor(Math.pow(1.95,(self.listOfWords.testingData[self.wordOrder].value.length/3)));
 
             ScoreService.getScoresFromBackend(function(res){
                 self.scores = res.data;
@@ -127,7 +130,7 @@ export default class HomeController {
         this.userWord = null;
         this.wordOrder++;
         this.totalPoints += this.currentPoints;
-        this.currentPoints = Math.floor(3.95^(this.listOfWords.testingData[this.wordOrder].length/3));
+        this.currentPoints = Math.floor(Math.pow(1.95,(this.listOfWords.testingData[this.wordOrder].value.length/3)));
         // console.info('HomeController -> nextWork : Ideme na dalsie slovo');
     };
 
