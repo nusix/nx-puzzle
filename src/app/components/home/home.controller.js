@@ -1,20 +1,29 @@
 /*
     TODO:
-    1 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
+    Must DO:
+    1 - popisat pravidla hry
+    2 - grafika lepsia pri zadavani pismenok
+    3 - countdown - aby sa nezacalo hned hrat ako potvrdi
+    4 - ked sa to zapne, aby mohol rovno pisat !!!!!!!!!
+    5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
+    6 - celkova grafika krajsia
+    7 - checknite si tabulku - button aby sa preklikli po hre
+
+
+    
     2 - progress bars
     3 - error messages zdruzene
-    4 - countdown - aby sa nezacalo hned hrat ako potvrdi
     5 - nejako lepsie pouzit timeout
     6 - blok pre hadanie by mohla byt direktiva
     7 - mozno vypis aby videl ako odpovedal
-    8 - ked sa to zapne, aby mohol rovno pisat !!!!!!!!!
     9 - v testoch otestovat nie len callbacky ale aj response ako parameter
     xy - pozriet, ako ozaj sa ma kodit callbacky a tak
+    10 - krajsi routing spravit
 
 */
 
 export default class HomeController {
-    constructor(ScoreService, WordsService, $timeout, $filter) {
+    constructor(ScoreService, WordsService, $timeout, $filter, $scope) {
         'ngInject';
 
         this.$filter = $filter;
@@ -69,6 +78,8 @@ export default class HomeController {
 
         /*-----START INIT APP------*/
         this.init(ScoreService, WordsService);
+
+        $scope.$emit('changedLocation', '/');
         /*-----END INIT------*/
     };
 

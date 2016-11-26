@@ -1,5 +1,5 @@
 export default class ScoresController {
-    constructor(ScoreService, WordsService, $timeout, $filter, NgTableParams) {
+    constructor(ScoreService, WordsService, $timeout, $filter, $scope, NgTableParams) {
         'ngInject';
 
         this.scores = [];
@@ -9,11 +9,18 @@ export default class ScoresController {
         ScoreService.getScoresFromBackend(function(res){
 
             self.scores = res.data;
-            self.tableParams = new NgTableParams({}, { dataset: self.scores});
+
+            self.tableParams = new NgTableParams({
+              sorting: { timestamp: "desc" } 
+            }, {
+              dataset: self.scores
+            });
 
         }, function(res){
             //todo error cbk
         });
+
+        $scope.$emit('changedLocation', '/scores');
     };
 
     convertTime(unixTimestamp){

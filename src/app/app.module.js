@@ -4,8 +4,16 @@ import appHome from 'app/components/home/home.module';
 import appScores from 'app/components/scores/scores.module';
 
 export default angular
-  .module('app', [
-    appHome,
-    appScores
-  ])
-  .name;
+    .module('app', [
+        appHome,
+        appScores
+    ])
+    .controller('MainController', function($location, $scope){
+
+        $scope.currentPage = $location.path();
+
+        $scope.$on('changedLocation', function(event, page) { 
+            $scope.currentPage = page;
+        });
+    })
+    .name;

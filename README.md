@@ -46,7 +46,7 @@ this server is:
 npm run gulp serve
 ```
 
-Now browse to the app at `http://localhost:3000/#/home`.
+Now browse to the app at `http://localhost:3000/#/`.
 
 
 ## Testing

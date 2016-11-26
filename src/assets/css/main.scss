@@ -3,6 +3,7 @@
 // Add your scss manually here
 @import '~app/components/home/home.controller';
 @import '~app/components/scores/scores.controller';
+@import 'node_modules/ng-table/src/styles/ng-table';
 
 body{
     padding-top: 70px;

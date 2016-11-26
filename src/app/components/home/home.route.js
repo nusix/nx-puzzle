@@ -5,7 +5,7 @@ export default route;
 function route($routeProvider) {
   'ngInject';
   $routeProvider
-    .when('/home', {
+    .when('/', {
       template: homeHtml,
       controller: 'HomeController as vm',
     });

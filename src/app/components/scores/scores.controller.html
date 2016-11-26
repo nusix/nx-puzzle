@@ -2,7 +2,7 @@
     <h1>Check highscores table!</h1>
 </div>
 
-<table ng-table="vm.tableParams" class="table" show-filter="true">
+<table ng-table="vm.tableParams" class="table table-condensed table-bordered table-striped" show-filter="true">
     <tr ng-repeat="user in $data">
         <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
             {{user.name}}</td>
