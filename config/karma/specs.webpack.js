@@ -12,4 +12,8 @@ require('angular-mocks/angular-mocks');
 beforeEach(angular.mock.module('app'));
 
 const testsContext = require.context('../../src/', true, /.spec$/);
+
+//FOT TESTING Purposes just specific file
+// const testsContext = require.context('../../src/app/components/home', true, /.spec$/);
+// const testsContext = require.context('../../src/app/shared/services', true, /score.service.spec$/);
 testsContext.keys().forEach(testsContext);

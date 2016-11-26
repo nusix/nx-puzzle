@@ -8,7 +8,7 @@
     6 - blok pre hadanie by mohla byt direktiva
     7 - mozno vypis aby videl ako odpovedal
     8 - ked sa to zapne, aby mohol rovno pisat !!!!!!!!!
-
+    9 - v testoch otestovat nie len callbacky ale aj response ako parameter
     xy - pozriet, ako ozaj sa ma kodit callbacky a tak
 
 */
@@ -19,20 +19,19 @@ export default class HomeController {
 
         this.$filter = $filter;
         this.userName = null;
-        this.listOfWords = [];
+        this.listOfWords = null;
         this.view = ['name-form','confirm-game','game','results'];
         this.actualView = this.view[0];  //1-insert-name, 2-confirm game and rules 3-game 4-results
 
         this.counter = 0;
         this.timer = null;
-        // this.limit  = 40;
-        this.limit = 20;
+        this.limit  = 40;
+        // this.limit = 20;
 
         this.userWord = null;
         this.wordOrder = 0;
         this.totalPoints = 0;
         this.currentPoints = 0;
-        this.lastUserWordSize = 0
         this.scores = [];
 
         //TODO aby mohol zrusit slovo za nulu ?
@@ -73,63 +72,6 @@ export default class HomeController {
         /*-----END INIT------*/
     };
 
-    //check
-    checkWord(oldValue){
-        // console.info('XX oldValue:', oldValue,'new:', this.userWord);
-
-        var self = this,
-            applyFault = function(){
-                self.currentPoints = self.currentPoints !== 0 ? self.currentPoints - 1 : 0;
-        };
-
-        //checking retyping
-        if(((oldValue.length === this.userWord.length) && (self.$filter('uppercase')(oldValue) !== self.$filter('uppercase')(this.userWord))) ||
-            (oldValue.length > this.userWord.length)){
-            applyFault();
-
-            console.info('YYY znizujeme / nahradil pismeno nejake');
-        };
-
-        if(this.listOfWords.testingData[this.wordOrder].checkInput(this.userWord)){
-            self.nextWord();
-        }
-    };
-
-    nextWord(){
-        this.userWord = null;
-        this.wordOrder++;
-        this.totalPoints += this.currentPoints;
-        this.currentPoints = Math.floor(3.95^(this.listOfWords.testingData[this.wordOrder].length/3));
-        this.lastUserWordSize = 0;
-        console.info('HomeController -> nextWork : Ideme na dalsie slovo');
-    };
-
-    resetGame(){
-        this.userName = null;
-        this.userWord = null;
-        this.counter = 0;
-        this.timer = null;
-        this.listOfWords.testingData = [];
-        this.wordOrder = 0;
-        //TODO nacitat novy nahodny zoznam pismen
-    };
-
-    setView(view){
-        this.actualView = view;
-    };
-
-    cancelTheGame(){
-        this.stopCounter();
-        this.resetGame();
-        this.setView(this.view[0]);
-    };
-
-    confirmTheGame(){
-        this.setView(this.view[2]);
-        this.startCounter();
-        this.listOfWords.getRandomList();
-    };
-
     init(ScoreService, WordsService){
         var self = this;
 
@@ -150,7 +92,59 @@ export default class HomeController {
         }, function(){
 
         });
-    }
+    };
+
+    //check
+    checkWord(oldValue){
+        // console.info('XX oldValue:', oldValue,'new:', this.userWord);
+
+        var self = this,
+            applyFault = function(){
+                self.currentPoints = self.currentPoints !== 0 ? self.currentPoints - 1 : 0;
+        };
+
+        //checking retyping
+        if(((oldValue.length === this.userWord.length) && (self.$filter('uppercase')(oldValue) !== self.$filter('uppercase')(this.userWord))) ||
+            (oldValue.length > this.userWord.length)){
+            applyFault();
+
+            // console.info('YYY znizujeme / nahradil pismeno nejake');
+        };
+
+        if(this.listOfWords.testingData[this.wordOrder].checkInput(this.userWord)){
+            self.nextWord();
+        }
+    };
+
+    nextWord(){
+        this.userWord = null;
+        this.wordOrder++;
+        this.totalPoints += this.currentPoints;
+        this.currentPoints = Math.floor(3.95^(this.listOfWords.testingData[this.wordOrder].length/3));
+        // console.info('HomeController -> nextWork : Ideme na dalsie slovo');
+    };
+
+    setView(view){
+        this.actualView = view;
+    };
+
+    cancelTheGame(){
+        this.userName = null;
+        this.userWord = null;
+        this.counter = 0;
+        this.timer = null;
+        this.listOfWords.testingData = [];
+        this.wordOrder = 0;
+
+        this.stopCounter();
+        this.setView(this.view[0]);
+    };
+
+    confirmTheGame(){
+        this.setView(this.view[2]);
+        this.startCounter();
+        this.listOfWords.getRandomList();
+    };
 
     startTheGame(){
         this.setView(this.view[1]);

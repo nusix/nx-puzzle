@@ -3,9 +3,61 @@ export default class WordsService {
         this.$http = $http;
         this.$filter = $filter;
         this.auth = 'K4OGxRo7BRwVduiz8KBijyZsmshvXI0WXOQFzWzS';
-    }
+    };
 
-    initListOfWords(succCbk, errorCbk){
+    getWordObj(data){
+        var selfParent = this;
+
+        class Word{
+            constructor(data){
+                this.id = data && data.id !== undefined ? data.id : null;
+                this.value = data && data.value ? data.value : null;
+                this.maskedValue = null;
+                // this.size = data && data.value ? (this.value.length+1)*15.6 : null;
+                this.size = data && data.value ? (this.value.length+1)*20 : null;
+            };
+
+            setMaskedValue(){
+                var a = this.value.split(""),
+                    n = a.length;
+
+                for(var i = n - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+                this.maskedValue = a.join("");
+                // console.info('setMaskedValue : this.value',this.value,a.join("")', a.join(""));
+            };
+
+            checkInput(val){
+                var result = true,
+                    self = this;
+
+                if(val){
+                    for(var i = 0;i < val.length; i++){
+                        if(selfParent.$filter('uppercase')(self.value[i]) !== selfParent.$filter('uppercase')(val[i])){
+                            result = false;
+                        }
+                    };
+
+                    if(val.length !== self.value.length){
+                        result = false;
+                    };
+                }else{
+                    result = false;
+                }
+
+                // console.info('XXX result', result);
+                return result;
+            };
+        }
+
+        return new Word(data);
+    };
+
+    getListOfWordsObject(){
         class ListOfWords{
             constructor(){
                 this.data = [];
@@ -42,68 +94,7 @@ export default class WordsService {
             };
         };
 
-        var listOfWords = new ListOfWords(),
-            self = this;
-
-        this.getWordsFromBackend(function(res){
-            if(res && res.data){
-                listOfWords.data = res.data.map(function(el){
-                    return self.getWordObj(el);
-                });
-                
-                succCbk(listOfWords);
-            };
-        }, function(){
-            errorCbk();
-        });
-    };
-
-    getWordObj(data){
-        var selfParent = this;
-
-        class Word{
-            constructor(data){
-                this.id = data && data.id !== undefined ? data.id : null;
-                this.value = data && data.value ? data.value : null;
-                this.maskedValue = null;
-                // this.size = data && data.value ? (this.value.length+1)*15.6 : null;
-                this.size = data && data.value ? (this.value.length+1)*20 : null;
-            };
-
-            setMaskedValue(){
-                var a = this.value.split(""),
-                    n = a.length;
-
-                for(var i = n - 1; i > 0; i--) {
-                    var j = Math.floor(Math.random() * (i + 1));
-                    var tmp = a[i];
-                    a[i] = a[j];
-                    a[j] = tmp;
-                }
-                this.maskedValue = a.join("");
-                // console.info('setMaskedValue : this.value',this.value,a.join("")', a.join(""));
-            };
-
-            checkInput(val){
-                var result = true,
-                    self = this;
-
-                for(var i = 0;i < val.length; i++){
-                    if(selfParent.$filter('uppercase')(self.value[i]) !== selfParent.$filter('uppercase')(val[i])){
-                        result = false;
-                    }
-                };
-
-                if(val.length !== self.value.length){
-                    result = false;
-                };
-
-                // console.info('XXX result', result);
-                return result;
-            };
-        }
-
-        return new Word(data);
+        return new ListOfWords();
     };
 
     //call http request for getting words from backend
@@ -124,6 +115,25 @@ export default class WordsService {
         });
     }
 
+    initListOfWords(succCbk, errorCbk){
+        
+
+        var listOfWords = this.getListOfWordsObject(),
+            self = this;
+
+        this.getWordsFromBackend(function(res){
+            if(res && res.data && res.data.length){
+                listOfWords.data = res.data.map(function(el){
+                    return self.getWordObj(el);
+                });
+                console.log('WordsService -≥ initListOfWords : XXX',res);
+                
+                succCbk(listOfWords);
+            };
+        }, function(){
+            errorCbk();
+        });
+    };
 }
 
 WordsService.$inject = ['$http', '$filter'];

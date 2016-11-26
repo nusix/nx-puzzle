@@ -3,6 +3,7 @@ export default class ScoresController {
         'ngInject';
 
         this.scores = [];
+        this.tableParams = null;
         var self = this;
 
         ScoreService.getScoresFromBackend(function(res){
@@ -24,6 +25,6 @@ export default class ScoresController {
             minutes = "0" + date.getMinutes(),
             second = "0" + date.getMinutes();
 
-        return hours + ':' + minutes.substr(-2) + ':' + second.substr(-2) + ' ' + day + '.' + month + '.' + year;
+        return hours + ':' + minutes.substr(-2) + ':' + second.substr(-2) + ' ' + day + '.' + month + '. ' + year;
     };
 }
