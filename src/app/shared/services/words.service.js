@@ -13,8 +13,7 @@ export default class WordsService {
                 this.id = data && data.id !== undefined ? data.id : null;
                 this.value = data && data.value ? data.value : null;
                 this.maskedValue = null;
-                // this.size = data && data.value ? (this.value.length+1)*15.6 : null;
-                this.size = data && data.value ? (this.value.length+1)*20 : null;
+                this.size = data && data.value ? (this.value.length)*74 : null; //74 full size for letter
             };
 
             setMaskedValue(){

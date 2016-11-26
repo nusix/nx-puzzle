@@ -1,16 +1,16 @@
 /*
     TODO:
     Must DO:
-    1 - popisat pravidla hry
-    2 - grafika lepsia pri zadavani pismenok
-    3 - countdown - aby sa nezacalo hned hrat ako potvrdi
-    4 - ked sa to zapne, aby mohol rovno pisat !!!!!!!!!
+    1 - tlacitka aby boli krajsie 
+    
     5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
     6 - celkova grafika krajsia
     7 - checknite si tabulku - button aby sa preklikli po hre
 
+    CSS BUG pismenko posledne ked je tak sa to posunie
+    3 - countdown - aby sa nezacalo hned hrat ako potvrdi
 
-    
+    1 - aby mohol zrusit slovo za nulu ?
     2 - progress bars
     3 - error messages zdruzene
     5 - nejako lepsie pouzit timeout
@@ -30,21 +30,17 @@ export default class HomeController {
         this.userName = null;
         this.listOfWords = null;
         this.view = ['name-form','confirm-game','game','results'];
-        this.actualView = this.view[0];  //1-insert-name, 2-confirm game and rules 3-game 4-results
+        this.actualView = this.view[2];  //1-insert-name, 2-confirm game and rules 3-game 4-results
 
         this.counter = 0;
         this.timer = null;
         this.limit  = 40;
-        // this.limit = 20;
 
         this.userWord = null;
         this.wordOrder = 0;
         this.totalPoints = 0;
         this.currentPoints = 0;
         this.scores = [];
-
-        //TODO aby mohol zrusit slovo za nulu ?
-        //TODO ulozenie vysledku
 
         var self = this;
 
