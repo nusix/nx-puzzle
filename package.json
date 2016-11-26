@@ -23,7 +23,8 @@
     "lodash": "4.16.4",
     "bootstrap" : "3.3.7",
     "ng-table" : "2.1.0",
-    "ng-focus-if" : "1.0.7"
+    "ng-focus-if" : "1.0.7",
+    "gulp-gh-pages" : "0.5.4"
   },
   "devDependencies": {
     "autoprefixer": "6.5.1",

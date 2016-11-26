@@ -2,7 +2,6 @@
     TODO:
     Must DO:
     1 - tlacitka aby boli krajsie 
-    2 - dat to niekde Live !!!!!!!
 
     3 - check crossbrowser and responsive
 
