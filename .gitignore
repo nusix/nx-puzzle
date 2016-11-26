@@ -5,6 +5,7 @@ typings
 reports
 npm-debug.log
 node_modules
+dist
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

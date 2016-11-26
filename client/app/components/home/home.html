@@ -1,0 +1,62 @@
+
+<!-- <navbar></navbar>
+<header>
+  <hero></hero>
+</header> -->
+<!-- <div>
+    <h1>Found in {{ $ctrl.name }}.html</h1>
+  </div> -->
+
+<main>
+  
+  <div ng-show="$ctrl.actualView === $ctrl.view[0]" class="jumbotron">
+    <h1>Welcome to NX-Puzzle!</h1>
+    <p>Just insert your name and start to play!</p>
+
+    <form name="nameForm">
+        <p><input type="text" name="userName" placeholder="Enter your nickname" ng-model="$ctrl.userName" required></p>
+        <p><button class="btn btn-primary" ng-disabled="!$ctrl.userName || !nameForm.userName.$valid" type="button" ng-click="$ctrl.startTheGame();">Play the game!</button></p>
+
+    </form>
+    </div>
+
+    <div ng-show="$ctrl.actualView === $ctrl.view[1]" class="jumbotron">
+        <h1>You are ready to play!</h1>
+        <p>You have 40 seconds limit to guess as many words as you can. You will get word with mismatched letters and you must guess each letter correctly in a row to get full score for that word.</p>
+        <p>Be careful with editing you answers. You will get 1 point fault for each deleted letter or retyping a letter. If you type the word correctly you will immediately get another mismatched word. Try to be as fast as possible and just type! Press the "Start to play" button and show you skills!</p>
+
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.confirmTheGame();">Start to play !</button>
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.cancelTheGame();">Back to Welcome page</button> 
+    </div>
+
+    <div ng-show="$ctrl.actualView === $ctrl.view[2]" class="jumbotron">
+        <script type="text/javascript">
+            
+        </script>
+
+        <h1>Try to guess a word !</h1>
+        <h2>Remaining time : {{ 40 - $ctrl.counter }}</h2>
+        <h2>Total score : {{ $ctrl.totalPoints }}</h2>
+        <h2>Actual word score : {{ $ctrl.currentPoints }}</h2>
+
+        <p>
+            <input style="width: {{$ctrl.listOfWords.testingData[$ctrl.wordOrder].size}}px;" class="word-wrap" type="text" value="{{ $ctrl.listOfWords.testingData[$ctrl.wordOrder].maskedValue }}" disabled></input>
+        </p>
+        
+        <p>
+            <input style="width: {{$ctrl.listOfWords.testingData[$ctrl.wordOrder].size}}px;" class="word-wrap" type="text" ng-model="$ctrl.userWord" ng-change="$ctrl.checkWord('{{$ctrl.userWord}}');" maxlength="{{$ctrl.listOfWords.testingData[$ctrl.wordOrder].value.length}}" focus-if="$ctrl.actualView === $ctrl.view[2]"></input>
+        </p>
+
+        <p>
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.cancelTheGame();">Cancel game</button>
+        </p>
+    </div>
+
+    <div ng-show="$ctrl.actualView === $ctrl.view[3]" class="jumbotron">
+        <h1>Your results {{$ctrl.userName}}</h1>
+        <p>Total points : {{ $ctrl.totalPoints }}</p>
+
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.cancelTheGame();">Back to Welcome page</button> 
+    </div>
+
+</main>
