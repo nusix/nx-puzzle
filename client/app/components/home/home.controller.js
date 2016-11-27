@@ -3,9 +3,13 @@
     Must DO:
     2 - dizajn tabulky nemam natiahnuty
 
-    3 - test controller nejdu score service nejde
+    3 - testy - coverage !!!
+
+    0 - README FILE PREPISAT!!!
 
     1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
+
+    4 - ng focus nefunguje resp. ho nemam natiahnuty
 
 xxxxxxxxxx
 
@@ -39,7 +43,7 @@ xxxxxxxxxx
 */
 
 class HomeController {
-    constructor(scoreService, wordsService, $timeout, $filter, $scope) {
+    constructor(scoreService, wordsService, $filter, $scope, $timeout) {
         
         'ngInject';
 
@@ -144,7 +148,6 @@ class HomeController {
         this.wordOrder++;
         this.totalPoints += this.currentPoints;
         this.currentPoints = Math.floor(Math.pow(1.95,(this.listOfWords.testingData[this.wordOrder].value.length/3)));
-        // console.info('HomeController -> nextWork : Ideme na dalsie slovo');
     };
 
     setView(view){

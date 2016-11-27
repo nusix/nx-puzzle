@@ -1,5 +1,5 @@
 export default class ScoresController {
-    constructor(scoreService, $timeout, $filter, $scope, NgTableParams) {
+    constructor(scoreService, $scope, NgTableParams) {
         'ngInject';
 
         this.scores = [];

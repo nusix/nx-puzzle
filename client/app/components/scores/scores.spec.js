@@ -1,54 +1,61 @@
 import ScoresModule from './scores'
+import ScoreService from '../../common/services/score.service';
+import scoresController from './scores.controller';
+
+let ScoresController, scoreService, $httpBackend, url, errorData, succData, ngTableParams;
 
 describe('Scores', () => {
-  let $rootScope, $state, $location, $componentController, $compile;
+    let $rootScope, $state, $location, $componentController, $compile, $scope;
 
-  beforeEach(window.module(ScoresModule));
+    beforeEach(window.module(ScoresModule));
 
-  beforeEach(inject(($injector) => {
-    $rootScope = $injector.get('$rootScope');
-    $componentController = $injector.get('$componentController');
-    $state = $injector.get('$state');
-    $location = $injector.get('$location');
-    $compile = $injector.get('$compile');
-  }));
+    function MyNgTableParamsMock() {
 
-  // describe('Module', () => {
-  //   // top-level specs: i.e., routes, injection, naming
-  //   it('Scores component should be visible when navigates to /scores', () => {
-  //     $location.url('/scores');
-  //     $rootScope.$digest();
-  //     expect($state.current.component).to.eq('scores');
-  //   });
-  // });
+    }; 
 
-  // describe('Controller', () => {
-  //   // controller specs
-  //   let controller;
-  //   beforeEach(() => {
-  //     controller = $componentController('scores', {
-  //       $scope: $rootScope.$new()
-  //     });
-  //   });
+    beforeEach(inject(($injector) => {
+        $rootScope = $injector.get('$rootScope');
+        $scope = $rootScope.$new();
+        $componentController = $injector.get('$componentController');
+        $state = $injector.get('$state');
+        $location = $injector.get('$location');
+        $compile = $injector.get('$compile');
+    }));
 
-  //   it('has a name property', () => { // erase if removing this.name from the controller
-  //     expect(controller).to.have.property('name');
-  //   });
-  // });
+    beforeEach(inject(function ($http, $filter, _$httpBackend_) {
+        ngTableParams = MyNgTableParamsMock  
+        scoreService = new ScoreService($http);
+        ScoresController = new scoresController(scoreService, $scope, ngTableParams);
 
-  // describe('View', () => {
-  //   // view layer specs.
-  //   let scope, template;
+        $httpBackend = _$httpBackend_;
+        url = 'https://nx-puzzle.firebaseio.com/scores.json?auth=K4OGxRo7BRwVduiz8KBijyZsmshvXI0WXOQFzWzS';
+        succData = [{id: 0,name: 'Sidney',score: 43,timestamp: "1479943027"}];
+    }));
 
-  //   beforeEach(() => {
-  //     scope = $rootScope.$new();
-  //     template = $compile('<scores></scores>')(scope);
-  //     scope.$apply();
-  //   });
+    //testing init
+    it('Initialization of controller - checking defined properties and functions', () => {
+        expect(ScoresController.scores).not.toBe(null);
+        expect(ScoresController.scores).toEqual([]);
+        expect(ScoresController.tableParams).toBe(null);
 
-  //   it('has name in template', () => {
-  //     expect(template.find('h1').html()).to.eq('scores');
-  //   });
+        expect(ScoresController.convertTime).toBeDefined();
 
-  // });
+        var test = null;
+
+        expect(test).toEqual(null);
+
+        $httpBackend.when('GET', url).respond(200, succData);
+        $httpBackend.flush();
+
+        expect(ScoresController.scores.length).toEqual(1);
+        expect(ScoresController.scores[0].id).toEqual(0);
+        expect(ScoresController.scores[0].name).toEqual('Sidney');
+        expect(ScoresController.tableParams).not.toBe(null);
+    });
+
+    //convertTime
+    it('convertTime function - get right date and time', () =>{
+        expect(ScoresController.convertTime('1479943027')).toBe('0:17:17 24.11. 2016');
+    });
+
 });
