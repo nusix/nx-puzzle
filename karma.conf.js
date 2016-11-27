@@ -21,7 +21,8 @@ module.exports = function (config) {
       require("karma-mocha-reporter"),
       require("karma-sourcemap-loader"),
       require("karma-jasmine"),
-      require("karma-webpack")
+      require("karma-webpack"),
+      require("karma-coverage")
     ],
 
     // preprocess matching files before serving them to the browser
@@ -36,7 +37,12 @@ module.exports = function (config) {
           { test: /\.html$/, loader: 'raw' },
           { test: /\.(scss|sass)$/, loader: 'style!css!sass' },
           { test: /\.css$/, loader: 'style!css' }
-        ]
+        ],
+        postLoaders: [{
+          test: /\.js$/,
+          exclude: /(node_modules|resources\/js\/vendor)/,
+          loader: 'istanbul-instrumenter'
+        }]
       }
     },
 
@@ -45,8 +51,8 @@ module.exports = function (config) {
     },
 
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
-    // reporters: ['mocha', 'coverage'],
+    // reporters: ['mocha'],
+    reporters: ['mocha', 'coverage'],
 
     // web server port
     port: 9876,
@@ -65,14 +71,14 @@ module.exports = function (config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
-    // coverageReporter: {
-    //   dir: './reports/coverage/',
-    //   reporters: [
-    //     {type: 'text-summary'},
-    //     {type: 'json'},
-    //     {type: 'html'},
-    //   ]
-    // },
+    coverageReporter: {
+      dir: './reports/coverage/',
+      reporters: [
+        {type: 'text-summary'},
+        {type: 'json'},
+        {type: 'html'},
+      ]
+    },
 
     // if true, Karma runs tests once and exits
     singleRun: true
