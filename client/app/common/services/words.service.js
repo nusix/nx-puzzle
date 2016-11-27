@@ -125,7 +125,7 @@ export default class WordsService {
                 listOfWords.data = res.data.map(function(el){
                     return self.getWordObj(el);
                 });
-                console.log('WordsService -≥ initListOfWords : XXX',res);
+                // console.log('WordsService -≥ initListOfWords : XXX',res);
                 
                 succCbk(listOfWords);
             };

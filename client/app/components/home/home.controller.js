@@ -1,12 +1,11 @@
 /*
     TODO:
     Must DO:
-    1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
     2 - dizajn tabulky nemam natiahnuty
 
     3 - test controller nejdu score service nejde
 
-    4 - routing nie je aktivna polozka v menu
+    1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
 
 xxxxxxxxxx
 
@@ -20,6 +19,8 @@ xxxxxxxxxx
     5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
     6 - celkova grafika krajsia
     7 - checknite si tabulku - button aby sa preklikli po hre
+
+    4 - routing troska lepsie - cez states ui routing
 
     CSS BUG pismenko posledne ked je tak sa to posunie
 
