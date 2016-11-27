@@ -1,6 +1,18 @@
 /*
     TODO:
     Must DO:
+    1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
+    2 - dizajn tabulky nemam natiahnuty
+
+    3 - test controller nejdu score service nejde
+
+    4 - routing nie je aktivna polozka v menu
+
+xxxxxxxxxx
+
+
+
+
     1 - tlacitka aby boli krajsie 
 
     3 - check crossbrowser and responsive
