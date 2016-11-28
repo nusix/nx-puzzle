@@ -36,8 +36,8 @@
         <h1>Try to guess a word !</h1>
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="progress-wrapper col-md-4 small-donut">
+            <div class="col-sm-12">
+                <div class="progress-wrapper col-sm-4 small-donut">
                     <h3>Total Points</h3>
                     <div class="progress ng-cloak">{{ $ctrl.totalPoints }}</div>
                     <round-progress
@@ -56,7 +56,7 @@
                         animation-delay="0"></round-progress>
                 </div>
 
-                <div class="progress-wrapper col-md-4">
+                <div class="progress-wrapper col-sm-4">
                     <h3>Timer</h3>
                     <div class="progress ng-cloak">{{ 40 - $ctrl.counter }}</div>
                     <round-progress
@@ -75,7 +75,7 @@
                         animation-delay="0"></round-progress>
                 </div>
 
-                <div class="progress-wrapper col-md-4 small-donut">
+                <div class="progress-wrapper col-sm-4 small-donut">
                     <h3>Actual word score</h3>
                     <div class="progress ng-cloak">{{ $ctrl.currentPoints }}</div>
                     <round-progress
