@@ -1,6 +1,7 @@
 /*
     TODO:
     Must DO:
+    Okomnetovat kod
 
     5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
     7 - checknite si tabulku - button aby sa preklikli po hre
@@ -85,6 +86,7 @@ class HomeController {
             self.listOfWords = list;
             self.listOfWords.getRandomList();
             self.currentPoints = Math.floor(Math.pow(1.95,(self.listOfWords.testingData[self.wordOrder].value.length/3)));
+            self.currentPointsOrigin = Math.floor(Math.pow(1.95,(self.listOfWords.testingData[self.wordOrder].value.length/3)));
 
             scoreService.getScoresFromBackend(function(res){
                 self.scores = res.data;
@@ -126,6 +128,7 @@ class HomeController {
         this.wordOrder++;
         this.totalPoints += this.currentPoints;
         this.currentPoints = Math.floor(Math.pow(1.95,(this.listOfWords.testingData[this.wordOrder].value.length/3)));
+        this.currentPointsOrigin = Math.floor(Math.pow(1.95,(this.listOfWords.testingData[this.wordOrder].value.length/3)));
     };
 
     setView(view){
