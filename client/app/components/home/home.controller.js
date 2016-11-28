@@ -1,20 +1,16 @@
 /*
     TODO:
     Must DO:
-    2 - dizajn tabulky nemam natiahnuty
-
-    3 - testy - coverage !!!
 
     0 - README FILE PREPISAT!!!
 
+    2 - dizajn tabulky nemam natiahnuty
     1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
-
     4 - ng focus nefunguje resp. ho nemam natiahnuty
 
+
+
 xxxxxxxxxx
-
-
-
 
     1 - tlacitka aby boli krajsie 
 
