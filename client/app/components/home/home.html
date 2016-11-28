@@ -20,7 +20,7 @@
     <p>Just insert your name and start to play!</p>
 
     <form name="nameForm">
-        <p><input type="text" name="userName" placeholder="Enter your nickname" ng-model="$ctrl.userName" required></p>
+        <p><input type="text" name="userName" placeholder="Enter your nickname" ng-model="$ctrl.userName" required focus-if="$ctrl.actualView === $ctrl.view[0]"></p>
         <p><button class="btn btn-primary" ng-disabled="!$ctrl.userName || !nameForm.userName.$valid" type="button" ng-click="$ctrl.startTheGame();">Play the game!</button></p>
 
     </form>

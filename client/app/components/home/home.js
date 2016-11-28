@@ -1,9 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import homeComponent from './home.component';
+import ngFocusIf from 'ng-focus-if';
 
 let homeModule = angular.module('home', [
-  uiRouter
+  uiRouter,
+  ngFocusIf
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

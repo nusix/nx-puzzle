@@ -2,11 +2,9 @@
     TODO:
     Must DO:
 
-    0 - README FILE PREPISAT!!!
-
     2 - dizajn tabulky nemam natiahnuty
+
     1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
-    4 - ng focus nefunguje resp. ho nemam natiahnuty
 
 
 
