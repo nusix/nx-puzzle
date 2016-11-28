@@ -8,8 +8,8 @@
   </div> -->
 
 <style>
-    input.word-wrap{
-        background: url('../../app/common/assets/images/border-line-complete.png');
+    .word-wrap-bg{
+        background-image: url('../../app/common/assets/images/border-line-single.png');
     }
 </style>
 
@@ -35,7 +35,7 @@
         <button class="btn btn-primary" type="button" ng-click="$ctrl.cancelTheGame();">Back to Welcome page</button> 
     </div>
 
-    <div ng-show="$ctrl.actualView === $ctrl.view[2]" class="jumbotron">
+    <div ng-show="$ctrl.actualView === $ctrl.view[2]" class="jumbotron words-wrapper-box">
         <script type="text/javascript">
             
         </script>
@@ -45,13 +45,27 @@
         <h2>Total score : {{ $ctrl.totalPoints }}</h2>
         <h2>Actual word score : {{ $ctrl.currentPoints }}</h2>
 
-        <p>
-            <input style="width: {{$ctrl.listOfWords.testingData[$ctrl.wordOrder].size}}px;" class="word-wrap" type="text" value="{{ $ctrl.listOfWords.testingData[$ctrl.wordOrder].maskedValue }}" disabled></input>
-        </p>
-        
-        <p>
-            <input style="width: {{$ctrl.listOfWords.testingData[$ctrl.wordOrder].size}}px;" class="word-wrap" type="text" ng-model="$ctrl.userWord" ng-change="$ctrl.checkWord('{{$ctrl.userWord}}');" maxlength="{{$ctrl.listOfWords.testingData[$ctrl.wordOrder].value.length}}" focus-if="$ctrl.actualView === $ctrl.view[2]"></input>
-        </p>
+        <div class="word-container">
+            <div class="word-wrap word-wrap-bg" style="width: {{$ctrl.listOfWords.testingData[$ctrl.wordOrder].size}}px;">
+                {{ $ctrl.listOfWords.testingData[$ctrl.wordOrder].maskedValue }}
+            </div>
+        </div>
+
+        <div class="word-container">
+            <input 
+                name="userWordInput"
+                style="width: {{$ctrl.listOfWords.testingData[$ctrl.wordOrder].size}}px;" 
+                class="word-wrap no-bg" 
+                type="text" 
+                ng-model="$ctrl.userWord" 
+                ng-change="$ctrl.checkWord('{{$ctrl.userWord}}',userWordInput);" 
+                focus-if="$ctrl.actualView === $ctrl.view[2]" 
+                ui-options="{'allowInvalidValue' : true}" 
+                ui-mask="{{ $ctrl.listOfWords.testingData[$ctrl.wordOrder].mask }}" 
+                ui-mask-placeholder ui-mask-placeholder-char="_"
+            ></input>
+
+        </div>
 
         <p>
             <button class="btn btn-primary" type="button" ng-click="$ctrl.cancelTheGame();">Cancel game</button>

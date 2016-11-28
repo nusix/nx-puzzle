@@ -14,6 +14,12 @@ export default class WordsService {
                 this.value = data && data.value ? data.value : null;
                 this.maskedValue = null;
                 this.size = data && data.value ? (this.value.length)*74 : null; //74 full size for letter
+                this.mask = '';
+
+                var self = this;
+                for(var i = 0;i < this.value.length;i++){
+                    self.mask += 'A';
+                };
             };
 
             setMaskedValue(){

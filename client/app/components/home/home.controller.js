@@ -2,37 +2,32 @@
     TODO:
     Must DO:
 
-    2 - dizajn tabulky nemam natiahnuty
-
     1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
 
 
 
 xxxxxxxxxx
 
-    1 - tlacitka aby boli krajsie 
-
-    3 - check crossbrowser and responsive
+    1 - CSS - tlacitka aby boli krajsie 
+    2 - CSS - check crossbrowser and responsive
+    3 - CSS - celkova grafika krajsia
 
     5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
-    6 - celkova grafika krajsia
     7 - checknite si tabulku - button aby sa preklikli po hre
-
     4 - routing troska lepsie - cez states ui routing
-
-    CSS BUG pismenko posledne ked je tak sa to posunie
-
     3 - countdown - aby sa nezacalo hned hrat ako potvrdi 3 sekundy alebo co...
-
-    1 - aby mohol zrusit slovo za nulu ?
     2 - progress bars
     3 - error messages zdruzene
+
+xxxxxx
+
+    1 - CSS BUG pismenko posledne ked je tak sa to posunie
+    1 - aby mohol zrusit slovo za nulu ?
     5 - nejako lepsie pouzit timeout
     6 - blok pre hadanie by mohla byt direktiva
     7 - mozno vypis aby videl ako odpovedal
     9 - v testoch otestovat nie len callbacky ale aj response ako parameter
     xy - pozriet, ako ozaj sa ma kodit callbacky a tak
-    10 - krajsi routing spravit
 
 */
 
@@ -117,7 +112,7 @@ class HomeController {
 
     //check
     checkWord(oldValue){
-        // console.info('XX oldValue:', oldValue,'new:', this.userWord);
+        // console.info('XX oldValue:', oldValue,'newValue:', this.userWord);
 
         var self = this,
             applyFault = function(){

@@ -1,9 +1,23 @@
-input.word-wrap {
-  border: 0px solid #ffffff;
-  //background: url('../../common/assets/images/border-line-complete.png');
-  background-position: -2px 0;
-  font: 40px monaco, monospace;
-  letter-spacing: 50.8px;
-  text-indent: 15px;
-  text-transform: uppercase;
+.words-wrapper-box{
+    overflow : sroll;
+
+    .word-container{
+        overflow-x: scroll;
+        margin-bottom : 20px; 
+        //width: 100% !important;
+        text-align: left;
+
+        .word-wrap {
+            border: 0px solid #ffffff;
+            font: 40px monaco;
+            letter-spacing: 50.8px;
+            text-indent: 15px;
+            text-transform: uppercase;
+            height: 50px;
+
+            &.no-bg{
+                background: none;
+            }
+        }
+    }
 }
