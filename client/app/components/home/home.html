@@ -124,8 +124,9 @@
     </div>
 
     <div ng-show="$ctrl.actualView === $ctrl.view[3]" class="jumbotron">
-        <h1>Your result {{$ctrl.userName}} !</h1>
-        <h2>Your score is {{ $ctrl.totalPoints }} points</h2>
+        <h1>Your time is over {{$ctrl.userName}} !</h1>
+        <p class="mb20">Your score is {{ $ctrl.totalPoints }} points</p>
+        <p class="mb20">Your can compare your score in scores section or you can try it again!</p>
 
         <button class="btn btn-primary" type="button" ng-click="$ctrl.cancelTheGame();">Back to Welcome page</button> 
     </div>

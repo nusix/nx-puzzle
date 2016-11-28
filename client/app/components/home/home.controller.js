@@ -1,26 +1,3 @@
-/*
-    TODO:
-    Must DO:
-    Okomnetovat kod
-
-    5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
-    7 - checknite si tabulku - button aby sa preklikli po hre
-    4 - routing troska lepsie - cez states ui routing
-    3 - countdown - aby sa nezacalo hned hrat ako potvrdi 3 sekundy alebo co...
-    2 - progress bars
-    3 - error messages zdruzene
-
-xxxxxx
-
-    1 - aby mohol zrusit slovo za nulu ?
-    5 - nejako lepsie pouzit timeout
-    6 - blok pre hadanie by mohla byt direktiva
-    7 - mozno vypis aby videl ako odpovedal
-    9 - v testoch otestovat nie len callbacky ale aj response ako parameter
-    xy - pozriet, ako ozaj sa ma kodit callbacky a tak
-
-*/
-
 class HomeController {
     constructor(scoreService, wordsService, $filter, $scope, $timeout) {
         
@@ -48,8 +25,6 @@ class HomeController {
         this.stopCounter = function() {
             $timeout.cancel(self.timer);
             self.timer = null;
-
-            //TODO co sa stane
         };
 
         this.startCounter = function() {
@@ -62,12 +37,10 @@ class HomeController {
             if(self.counter < (self.limit-1)){
                 self.counter++;
                 self.timer = $timeout(updateCounter, 1000);
-                // console.info('XXX volalo sa updateCounter cas', self.counter);
             }else{
                 self.stopCounter();
                 self.actualView = self.view[3];
                 scoreService.addScore(self.scores, self.userName, self.totalPoints);
-                // console.info('XXX koniecvolalo sa updateCounter cas', self.counter);
             }
         };
         /*-----END TIMING------*/
@@ -90,7 +63,6 @@ class HomeController {
 
             scoreService.getScoresFromBackend(function(res){
                 self.scores = res.data;
-                // scoreService.addScore(self.scores, self.userName, self.totalPoints);
             }, function(res){
                 //todo error cbk
             });
@@ -103,8 +75,6 @@ class HomeController {
 
     //check
     checkWord(oldValue){
-        // console.info('XX oldValue:', oldValue,'newValue:', this.userWord);
-
         var self = this,
             applyFault = function(){
                 self.currentPoints = self.currentPoints !== 0 ? self.currentPoints - 1 : 0;
@@ -114,8 +84,6 @@ class HomeController {
         if(((oldValue.length === this.userWord.length) && (self.$filter('uppercase')(oldValue) !== self.$filter('uppercase')(this.userWord))) ||
             (oldValue.length > this.userWord.length)){
             applyFault();
-
-            // console.info('YYY znizujeme / nahradil pismeno nejake');
         };
 
         if(this.listOfWords.testingData[this.wordOrder].checkInput(this.userWord)){
@@ -142,6 +110,7 @@ class HomeController {
         this.timer = null;
         this.listOfWords.testingData = [];
         this.wordOrder = 0;
+        this.totalPoints = 0;
 
         this.stopCounter();
         this.setView(this.view[0]);

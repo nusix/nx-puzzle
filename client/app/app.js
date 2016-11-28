@@ -10,7 +10,6 @@ import 'normalize.css';
 
 require('bootstrap-loader');
 
-//this code below is working - uncomment only when some errors will occur
 var $ = require('jquery');
 window.jQuery = $;
 
