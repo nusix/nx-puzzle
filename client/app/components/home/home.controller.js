@@ -28,6 +28,7 @@ class HomeController {
         };
 
         this.startCounter = function() {
+            self.counter = 0;
             if (self.timer === null) {
                 updateCounter();
             }
