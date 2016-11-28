@@ -39,22 +39,24 @@ export default class ScoreService {
         var url = 'https://nx-puzzle.firebaseio.com/scores.json?auth=' + this.auth,
             scores = scores;
 
-        scores.push(this.getScoreObj(name, points, scores));
+        if(name && points){
+            scores.push(this.getScoreObj(name, points, scores));
 
-        // console.log('ScoreService -≥ addScore : params: ', scores, name, points);
+            // console.log('ScoreService -≥ addScore : params: ', scores, name, points);
 
 
-        this.$http.put(url, scores).then(function(res){
+            this.$http.put(url, scores).then(function(res){
 
-            console.log('ScoreService -≥ addScore : Score was saved successfully. Response:',res);
+                console.log('ScoreService -≥ addScore : Score was saved successfully. Response:',res);
 
-            // successCbk(res);  
+                // successCbk(res);  
 
-        }, function (res) {
-            console.error('ScoreService -≥ addScore : There was an error during saving score. Response:', res);
+            }, function (res) {
+                console.error('ScoreService -≥ addScore : There was an error during saving score. Response:', res);
 
-            // errorCbk(res);  
-        });
+                // errorCbk(res);  
+            });
+        }
     }
 
 }

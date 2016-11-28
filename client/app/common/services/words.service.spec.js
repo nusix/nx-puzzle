@@ -21,22 +21,6 @@ describe('Service: WordsService', () => {
         expect(wordsService.getWordsFromBackend).toBeDefined();
     });
 
-    //testing getWordObj function
-    it('getWordObj function - checking empty object return value and object functions', () => {
-        var emptyWordObj = wordsService.getWordObj();
-
-        expect(emptyWordObj).toBeDefined();
-        expect(emptyWordObj.id).toBeDefined();
-        expect(emptyWordObj.value).toBeDefined();
-        expect(emptyWordObj.maskedValue).toBeDefined();
-        expect(emptyWordObj.size).toBeDefined();
-
-        expect(emptyWordObj.id).toEqual(null);
-        expect(emptyWordObj.value).toEqual(null);
-        expect(emptyWordObj.maskedValue).toEqual(null);
-        expect(emptyWordObj.size).toEqual(null);
-    });
-
     it('getWordObj function - checking object with data', () => {
         var wordObjWithData = wordsService.getWordObj({id:'1', value:'string'});
         expect(wordObjWithData.id).toEqual('1');

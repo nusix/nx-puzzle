@@ -2,16 +2,6 @@
     TODO:
     Must DO:
 
-    1 - na ipade sa to zle zobrazuje - padding asi alebo co zle pismena
-
-
-
-xxxxxxxxxx
-
-    1 - CSS - tlacitka aby boli krajsie 
-    2 - CSS - check crossbrowser and responsive
-    3 - CSS - celkova grafika krajsia
-
     5 - validation name ng pattern (numbers, letters, spaces, max 40 chars)
     7 - checknite si tabulku - button aby sa preklikli po hre
     4 - routing troska lepsie - cez states ui routing
@@ -21,7 +11,6 @@ xxxxxxxxxx
 
 xxxxxx
 
-    1 - CSS BUG pismenko posledne ked je tak sa to posunie
     1 - aby mohol zrusit slovo za nulu ?
     5 - nejako lepsie pouzit timeout
     6 - blok pre hadanie by mohla byt direktiva

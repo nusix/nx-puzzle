@@ -5,7 +5,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  // entry: [ 'bootstrap-loader' ],
   entry: {},
   module: {
     loaders: [

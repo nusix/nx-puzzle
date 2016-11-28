@@ -4,10 +4,13 @@ import homeComponent from './home.component';
 import ngFocusIf from 'ng-focus-if';
 import uiMask from 'angular-ui-mask';
 
+import 'angular-svg-round-progressbar';
+
 let homeModule = angular.module('home', [
   uiRouter,
   ngFocusIf,
-  uiMask
+  uiMask,
+  'angular-svg-round-progressbar'
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
