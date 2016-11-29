@@ -54,7 +54,7 @@ Now browse to the app at `http://localhost:3000/`.
 You can simply build this project with:
 
 ```
-npm build
+npm run build
 ```
 
 That creates dist folder in the app structure with builded files neccessary for running on the web server (upload on web hosting or run loccaly with http-server -a localhost -p 8000 if it's installed)
